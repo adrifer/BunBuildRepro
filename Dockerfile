@@ -8,11 +8,11 @@ FROM oven/bun:1.1.1-slim AS build
 ENV PUBLIC_DIR=public
 WORKDIR /src
 # install dependencies with cache
-COPY Web/package.json .
-COPY Web/bun.lockb .
+COPY package.json .
+COPY bun.lockb .
 RUN bun install --frozen-lockfile
 # copy app files and build
-COPY Web/ .
+COPY . .
 RUN bun run build
 
 FROM base AS final
